@@ -1,8 +1,9 @@
-function isnt_max_number {
+function doesnt_overflow_and_isnt_negative {
   n=$1
   ((n + 1 > 0))
 }
 
+# Search for first number that 'does overflow or is negative' <=> number that overflows <=> max number
 function bin_search_max_number {
   left=$1
   diff=$2
@@ -14,7 +15,7 @@ function bin_search_max_number {
 
   half_diff=$((diff / 2))
   center=$((left + half_diff))
-  if isnt_max_number $center; then
+  if doesnt_overflow_and_isnt_negative $center; then
     bin_search_max_number $(( center + 1 )) $((diff - half_diff))
   else
     bin_search_max_number $left $half_diff
