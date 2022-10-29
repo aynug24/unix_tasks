@@ -6,6 +6,7 @@ function setup {
 
   touch $'simple'
   touch $'MiXeD'
+  touch $'абсд'
   touch $'ALREADY_CAP'
   touch $'АБВГД'
   touch $'white space'
@@ -37,16 +38,16 @@ function _capitalize_found_files {
 function capitalize_files {
   export -f _capitalize_found_file
   export -f _capitalize_found_files
-  find . -type f -exec bash -c '_capitalize_found_files "$@"' {} '+'
+  find . -type f -exec bash -c '_capitalize_found_files "$@"' _ {} '+'
 }
 
 function start_test {
   setup
-  echo -e "Files before capitalizing:\n$(ls -b)"
+  echo -e "Files before capitalizing:\n$(ls -b)\n"
 
   capitalize_files
 
-  echo -e "Files after capitalizing:\n$(ls -b)"
+  echo -e "\nFiles after capitalizing:\n$(ls -b)"
   teardown
 }
 
